@@ -42,7 +42,7 @@ def pred_function(time,serum_sodium,ejection_fraction,age,platelets,serum_creati
     
     ## Creating prediction function
 
-    input_user = pd.DataFrame([[time,serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, high_blood_pressure,sex, anaemia, diabetes, smoking]])
+    input_user = pd.DataFrame([[age,anaemia,creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking, time]], columns = ["age","anaemia","creatinine_phosphokinase", "diabetes", "ejection_fraction", "high_blood_pressure", "platelets", "serum_creatinine", "serum_sodium", "sex", "smoking", "time"])
 
     predictor = classifier.predict(input_user)
     
@@ -51,7 +51,7 @@ def pred_function(time,serum_sodium,ejection_fraction,age,platelets,serum_creati
 ## Main page
 
 def main():
-    st.markdown("teste")
+    st.title("Heart Failure Prediction")
 
     Sex = st.radio("Gender",("Male","Female"))
     age = st.slider("Age", min_value = 18, max_value = 110, step = 1)
@@ -61,7 +61,7 @@ def main():
     Smoking = st.radio("Smoking status",("Smoker","Non-Smoker"))
     platelets = st.number_input("Platelets (Kp/ml")
     serum_sodium = st.number_input("Sodium blood level (mEq/L")
-    serum_creatinine = st.number_input("Sodium blood level (mg/dl")
+    serum_creatinine = st.number_input("Serum Creatinine (mg/dl")
     creatinine_phosphokinase = st.number_input("CPK blood level (ug/L")
     ejection_fraction = st.number_input("Ejection Fraction (%)")
 
