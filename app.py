@@ -17,7 +17,7 @@ Diabetes = 0
 Sex = 0
 Smoking = 0
 
-def pred_function(time,serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking):
+def pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking):
     if Anaemia == "Yes":
         anaemia = 1
     else:
@@ -42,9 +42,9 @@ def pred_function(time,serum_sodium,ejection_fraction,age,platelets,serum_creati
     
     ## Creating prediction function
 
-    input_user = pd.DataFrame([[age,anaemia,creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking, time]], columns = ["age","anaemia","creatinine_phosphokinase", "diabetes", "ejection_fraction", "high_blood_pressure", "platelets", "serum_creatinine", "serum_sodium", "sex", "smoking", "time"])
+    input_user = pd.DataFrame([[age,anaemia,creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking]], columns = ["age","anaemia","creatinine_phosphokinase", "diabetes", "ejection_fraction", "high_blood_pressure", "platelets", "serum_creatinine", "serum_sodium", "sex", "smoking"])
 
-    predictor = classifier.predict(input_user)
+    predictor = classifier.predict_proba(input_user)[:,1]
     
     return predictor
 
@@ -55,7 +55,6 @@ def main():
 
     Sex = st.radio("Gender",("Male","Female"))
     age = st.slider("Age", min_value = 18, max_value = 110, step = 1)
-    time = st.slider("Days After Diagnosis", min_value = 0, max_value = 100, step = 1)
     Anaemia = st.radio("Does the patient has anaemia?",("Yes","No"))
     Diabetes = st.radio("Does the patient has diabetes?",("Yes","No"))
     Smoking = st.radio("Smoking status",("Smoker","Non-Smoker"))
@@ -66,7 +65,7 @@ def main():
     ejection_fraction = st.number_input("Ejection Fraction (%)")
 
     if st.button("Predict"):
-        result = pred_function(time,serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
+        result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
         st.success("The death event is {}".format(result))
 
 if __name__=='__main__': 
