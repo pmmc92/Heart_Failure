@@ -7,7 +7,7 @@ import pandas as pd
 
 ## Loading Model
 
-pickle_in = open("Hearth_model.pkl", 'rb')
+pickle_in = open("hearth_model.pkl", 'rb')
 classifier = pickle.load(pickle_in)
 
 ## Creating pre-processing function
