@@ -44,7 +44,7 @@ def pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,
 
     input_user = pd.DataFrame([[age,anaemia,creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking]], columns = ["age","anaemia","creatinine_phosphokinase", "diabetes", "ejection_fraction", "high_blood_pressure", "platelets", "serum_creatinine", "serum_sodium", "sex", "smoking"])
 
-    predictor = classifier.predict_proba(input_user)[:,1]
+    predictor = classifier.predict(input_user)
     
     return predictor
 
@@ -58,15 +58,18 @@ def main():
     Anaemia = st.radio("Does the patient has anaemia?",("Yes","No"))
     Diabetes = st.radio("Does the patient has diabetes?",("Yes","No"))
     Smoking = st.radio("Smoking status",("Smoker","Non-Smoker"))
-    platelets = st.number_input("Platelets (Kp/ml")
-    serum_sodium = st.number_input("Sodium blood level (mEq/L")
-    serum_creatinine = st.number_input("Serum Creatinine (mg/dl")
-    creatinine_phosphokinase = st.number_input("CPK blood level (ug/L")
+    platelets = st.number_input("Platelets (Kp/ml)")
+    serum_sodium = st.number_input("Sodium blood level (mEq/L)")
+    serum_creatinine = st.number_input("Serum Creatinine (mg/dl)")
+    creatinine_phosphokinase = st.number_input("CPK blood level (ug/L)")
     ejection_fraction = st.number_input("Ejection Fraction (%)")
 
     if st.button("Predict"):
         result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
-        st.success("The death event is {}".format(result))
+        if result == 1:
+            st.success("High probability within 1 year")
+        else:
+            st.success("Low probability within 1 year")
 
 if __name__=='__main__': 
     main()
