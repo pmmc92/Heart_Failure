@@ -4,7 +4,7 @@
 import pickle
 import streamlit as st
 import pandas as pd
-import xgboost
+from xgboost import XGBClassifier
 
 ## Loading Model
 
