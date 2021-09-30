@@ -52,8 +52,12 @@ def pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,
 
 ## Main page
 
+st.set_page_config(page_title="Predicting Heart Failure", page_icon = ":blue_heart:")
+
 def main():
     st.title("Heart Failure Prediction")
+
+    st.markdown("This simple app uses a machine learning algorithm to predict the probability of death by heart failure in a 6 month period. To know more about this project click here")
 
     Sex = st.radio("Gender",("Male","Female"))
     age = st.slider("Age", min_value = 18, max_value = 110, step = 1)
@@ -69,9 +73,9 @@ def main():
     if st.button("Predict"):
         result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
         if result == 1:
-            st.success("High probability within 1 year")
+            st.success("High probability of death within 1 year")
         else:
-            st.success("Low probability within 1 year")
+            st.success("Low probability of death within 1 year")
 
 if __name__=='__main__': 
     main()
