@@ -72,7 +72,7 @@ def main():
 
     if st.button("Predict"):
         if ((platelets ==  0) or (serum_sodium == 0) or (serum_creatinine == 0) or (creatinine_phosphokinase == 0) or (ejection_fraction == 0)):
-            st.warning('Please fill all fields.')
+            st.warning('Please fill all fields')
             st.stop()
         else:
             result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
