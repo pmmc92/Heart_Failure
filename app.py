@@ -71,11 +71,15 @@ def main():
     ejection_fraction = st.number_input("Ejection Fraction (%)")
 
     if st.button("Predict"):
-        result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
-        if result == 1:
-            st.success("High probability of death within 1 year")
-        else:
-            st.success("Low probability of death within 1 year")
+        if platelets =  0 or serum_sodium = 0 or serum_creatinine = 0 or creatinine_phosphokinase = 0 or ejection_fraction = 0:
+            st.warning('Please fill all fields.')
+            st.stop()
+        else
+            result = pred_function(serum_sodium,ejection_fraction,age,platelets,serum_creatinine,creatinine_phosphokinase, Hypertension,Sex, Anaemia, Diabetes, Smoking)
+            if result == 1:
+                st.success("High probability of death within 1 year")
+            else:
+                st.success("Low probability of death within 1 year")
 
 if __name__=='__main__': 
     main()
