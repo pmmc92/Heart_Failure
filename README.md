@@ -26,12 +26,14 @@ It uses data already published in clinical and scientific magazines, thus, peer 
 ![Continuous_analysis](analysis1.png)
 
 ## Used Packages
-
-    import pandas as pd 
+```
+  import pandas as pd 
   import numpy as np 
   import matplotlib.pyplot as plt 
   import seaborn as sns 
   import missingno as msn
+  import pickle
+  import streamlit as st
 
   from sklearn.model_selection import train_test_split
   from sklearn.preprocessing import StandardScaler
@@ -51,3 +53,14 @@ It uses data already published in clinical and scientific magazines, thus, peer 
 
   from sklearn.model_selection import RandomizedSearchCV
   from sklearn.model_selection import GridSearchCV
+```
+
+## Selected Model
+
+* Models were compared using cross-validation with KFold and the comparison metrics were accuracy and precision
+* **XgboostClassifier** was the best performing model
+* A train_test split was done (0.3 on test sample)
+* The hyperparemeters were optimized to increase top accuracy
+* To analyse the feature importance, SHAP methodology was used
+
+![SHAP](shap.png)
