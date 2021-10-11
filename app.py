@@ -57,7 +57,7 @@ st.set_page_config(page_title="Predicting Heart Failure", page_icon = ":blue_hea
 def main():
     st.title("Heart Failure Prediction")
 
-    st.markdown("This simple app uses a machine learning algorithm to predict the probability of death by heart failure in a 6 month period. To know more about this project click here")
+    st.markdown("This simple app uses a machine learning algorithm to predict the probability of death by heart failure in a 6 month period. To know more about this project click [here](https://github.com/pmmc92/Heart_Failure/blob/master/README.md)")
 
     Sex = st.radio("Gender",("Male","Female"))
     age = st.slider("Age", min_value = 18, max_value = 110, step = 1)
